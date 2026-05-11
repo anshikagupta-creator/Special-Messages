@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bhoomi Special Message</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#fff;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.screen{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+}
+
+.logo{
+font-size:70px;
+font-weight:bold;
+margin-bottom:30px;
+}
+
+.logo span:nth-child(1){color:#4285F4;}
+.logo span:nth-child(2){color:#EA4335;}
+.logo span:nth-child(3){color:#FBBC05;}
+.logo span:nth-child(4){color:#34A853;}
+
+.search-box{
+width:80%;
+max-width:800px;
+padding:18px;
+border:1px solid #ddd;
+border-radius:30px;
+font-size:24px;
+box-shadow:0 2px 8px rgba(0,0,0,.15);
+outline:none;
+}
+
+.loading{
+margin-top:20px;
+font-size:22px;
+color:#666;
+}
+
+.hidden{
+display:none;
+}
+
+.chat{
+max-width:700px;
+text-align:left;
+}
+
+.bubble{
+background:#f1f3f4;
+padding:15px 20px;
+border-radius:20px;
+margin:12px 0;
+font-size:22px;
+animation:fadeIn .7s ease;
+box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+</style>
+</head>
+<body>
+
+<div class="screen" id="searchScreen">
+<div class="logo">
+<span>G</span><span>o</span><span>o</span><span>gle</span>
+</div>
+
+<input class="search-box" id="search" readonly>
+<div class="loading" id="status">Searching...</div>
+</div>
+
+<div class="screen hidden" id="messageScreen">
+<div class="chat" id="chatBox"></div>
+</div>
+
+<script>
+
+const searchInput = document.getElementById("search");
+const status = document.getElementById("status");
+
+let searchText="Why today is so special...?";
+let i=0;
+
+function typeSearch(){
+if(i<searchText.length){
+searchInput.value += searchText.charAt(i);
+i++;
+setTimeout(typeSearch,120);
+}else{
+setTimeout(()=>{
+status.innerHTML="Loading...";
+setTimeout(()=>{
+status.innerHTML="Scanning system...";
+setTimeout(()=>{
+status.innerHTML="Checking important dates...";
+setTimeout(()=>{
+status.innerHTML="Because today is Bhoomi's Birthday 🎂";
+setTimeout(()=>{
+status.innerHTML="Anshika special message loading...";
+setTimeout(showMessage,2000);
+},2000);
+},2000);
+},1500);
+},1500);
+},1000);
+}
+}
+
+let messages=[
+"👑 Birthday Queen Detected👑",
+"☺️Hey Bhoomi 😊",
+"👉🏻Today isn't just another day...👈🏻",
+"✨It's your special day ✨",
+"😄So smile a little extra 😄",
+"😂Laugh a little louder 😂",
+"🌟Shine brighter than ever 🌟",
+"💫Make beautiful memories 💫",
+"🌸You deserve happiness 🌸",
+"🎂Success, smiles and lots of cake 🎂",
+"💖Stay amazing always 💖",
+"🎉Happy Birthday Bhoomi 🎉",
+"🎂 Happy Birthday Bhoomi, keep shining always🎂",
+"✨ Wishing you endless happiness today and always✨",
+"🌸 May your smile stay this beautiful forever🌸",
+"💖 Happy Birthday to the most special soul💖",
+"🎉 Today is all about your happiness🎉",
+"🌟 Shine brighter and dream bigger this year🌟",
+"😊 Keep smiling and spreading positivity☺️",
+"🎂 Another year, another reason to celebrate you🎂",
+"💫 Wishing you love, success and joy always💫",
+"🌷 Stay blessed and stay amazing🌷",
+"👑 Birthday queen, enjoy your special day👑",
+"💝 May all your wishes come true💝",
+"🎊 Have the happiest birthday ever Bhoomi🎊",
+"✨ You deserve all the happiness in the world✨",
+"🎂 Make this day unforgettable🎂",
+"🌹 Keep glowing, keep growing🌹",
+"💖 Happy Birthday beautiful soul💖",
+"🎉 Smile big, laugh loud, celebrate hard🎉",
+"🌟 Your special day deserves special memories🌟",
+"🎂 Cheers to your wonderful journey ahead🎂",
+"👑🎂 Happy Birthday Queen 🎂👑"
+];
+
+let idx=0;
+
+function showMessage(){
+document.getElementById("searchScreen").classList.add("hidden");
+document.getElementById("messageScreen").classList.remove("hidden");
+
+let box=document.getElementById("chatBox");
+
+let interval=setInterval(()=>{
+if(idx<messages.length){
+let div=document.createElement("div");
+div.className="bubble";
+div.innerText=messages[idx];
+box.appendChild(div);
+idx++;
+}else{
+clearInterval(interval);
+}
+},900);
+}
+
+typeSearch();
+
+</script>
+
+</body>
+</html>
